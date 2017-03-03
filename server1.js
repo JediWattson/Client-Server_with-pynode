@@ -1,9 +1,11 @@
-var i = 0
+var u = require("./userobj.js")
 
+var userList = []
+var test = u.user("asdasd", "asdasd")
 require("net")
 .createServer((c) => {
-	i++
-	console.log("socket to me!\nUser: " + i)		
+	console.log("socket to me")	
+	userList.push(new user(c, "asdasdasd"))
 	c.write("welcome")
 	c.pipe(c)
 	c.on('data', (d) => {console.log(d.toString())})
@@ -17,7 +19,6 @@ require("net")
 
 .on('error', (err) => {
 		console.log("uh oh!")
-		console.log(err.stack)
 		throw err
 })
 
