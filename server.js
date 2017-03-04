@@ -1,14 +1,11 @@
 var u = require("./userobj.js")
-
 var userList = []
-var test = u.user("asdasd", "asdasd")
+var numUsersOnline = 0
+
 require("net")
+
 .createServer((c) => {
-	console.log("socket to me")	
-	userList.push(new user(c, "asdasdasd"))
-	c.write("welcome")
-	c.pipe(c)
-	c.on('data', (d) => {console.log(d.toString())})
+	c.on('data', (data) => {uChoice(data)})
 	c.on('end', () => {console.log("client left this biatch!!!!")})
 })
 
@@ -17,11 +14,28 @@ require("net")
 	port: 1337	
 })
 
-.on('error', (err) => {
-		console.log("uh oh!")
-		throw err
+.on('connection', (c) => {
+	c.write("Please Enter User name")
+	c.pipe(c)
+	userList.push(new u(true, c, ""))
 })
 
 .on('close', () => {
 	console.log("done")	
 })
+
+.on('error', (err) => {
+	console.log("uh oh!")
+	throw err
+})
+
+var uChoice = function(c){
+	console.log(numUsersOnline)
+	var ch = JSON.parse(c.toString()).choice
+	if (userList[numUsersOnline].init){
+		userList[numUsersOnline].init = false
+		userList[numUsersOnline].name = ch
+		numUsersOnline += 1
+	}
+
+}

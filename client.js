@@ -1,22 +1,25 @@
-var csock = require('net')
+const rl = require('readline')
+.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+	prompt: 'OHAI> '
+})
 
+var csock = require('net')
 .connect({port: 1337},() => {
 	console.log("connected to server!!!!")
-	csock.write("hey server! what's going on brah!")
-	csock.pipe(csock)
-	csock.end()
 })
 
 .on('data', (data) => {
-	console.log(data.toString())
-	//csock.end()
+	console.log(data.toString().trim())
 })
 
 .on('end', () => {
-	console.log("no mas!")	
+	console.log("no mas server!")	
 })
 
 .on('error', (err) => {
 	console.log(err)
 	throw err		
 })
+
