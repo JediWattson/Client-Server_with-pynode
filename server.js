@@ -22,7 +22,6 @@ require("net")
 		throw err
 })
 
-
 .on('close', () => {
 	console.log("done")	
 })
