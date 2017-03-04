@@ -1,3 +1,3 @@
 # nodejsclientserverexample
 
-This is a nice way to look nodejs having a loopback interaction between the server and client to execute the communication between the two. It's terribly written such that the pointers are just hanginging off the require call, but I like it so deal with it!
+A simple nodejs client-server example, which will hopefully be further extended to implement multiple clients and even some functionality such as ping-pong effect between them.
