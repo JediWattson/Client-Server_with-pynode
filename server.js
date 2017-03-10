@@ -25,7 +25,7 @@ require("net")
 
 var app = require('express')()
 .get('/', (req, res) =>{
-	res.sendfile("index.html")
+	res.sendFile("index.html")
 	console.log("connect!")
 })
 
