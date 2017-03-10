@@ -1,7 +1,8 @@
 var u = require("./server_obj/userobj.js")
 var uChoice = require("./server_obj/uChoice")
-
+var path = require('path')
 const fs = require("fs")
+
 var options = { 
 	key: fs.readFileSync('/etc/letsencrypt/live/famtrees.ml/privkey.pem'), 
     cert: fs.readFileSync('/etc/letsencrypt/live/famtrees.ml/fullchain.pem'), 
@@ -25,7 +26,7 @@ require("net")
 
 var app = require('express')()
 .get('/', (req, res) =>{
-	res.sendFile("/index.html")
+	res.sendFile(path.join(__dirname + '/index.html'))
 	console.log("connect!")
 })
 
