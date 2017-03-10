@@ -24,9 +24,11 @@ require("net")
 
 
 var app = require('express')()
-.listen(80)
 .get('/', (req, res) =>{
 	res.send("Welcome!!!")
 	console.log("connect!")
 })
+
+.listen(80)
+
 //require('https').createServer(options, app).listen(app.get('port'))
