@@ -1,8 +1,7 @@
 var userList = []
-var numUsersOnline = 0
 
-var u = require("./userobj.js")
-var uChoice = require("./uChoice")
+var u = require("./server_obj/userobj.js")
+var uChoice = require("./server_obj/uChoice")
 require("net")
 
 .createServer()
@@ -17,7 +16,6 @@ require("net")
 	c.pipe(c)
 	
 	userList.push(new u(true, c, ""))
-	numUsersOnline++
 	
 	c.on('data', (data) => {uChoice(userList, data, c)})
 	c.on('close', () => {c.unref()})
@@ -25,3 +23,13 @@ require("net")
 
 .on('close', () => {console.log("done")})
 .on('error', (err) => {throw err})
+
+require('express')()
+
+.get('/', (req, res) =>{
+	res.send("Welcome!!!")
+	console.log("baosidj")
+})
+
+.listen(80)
+
