@@ -8,18 +8,11 @@ var options = {
 }
 
 require("net")
-
 .createServer()
-
-.listen({
-	host: "127.0.0.1",
-	port: 1337	
-})
-
+.listen(1337)
 .on('connection', (c) => {
 	c.write("enter Name: ")
 	c.pipe(c)
-	
 	userList.push(new u(true, c, ""))
 	
 	c.on('data', (data) => {uChoice(userList, data, c)})
@@ -30,12 +23,11 @@ require("net")
 .on('error', (err) => {throw err})
 
 var app = require('express')()
-
 .get('/', (req, res) =>{
 	res.send("Welcome!!!")
 	console.log("connect!")
 })
 
-.set('port', 80)
+.set('port', 443)
 
 require('https').createServer(options, app).listen(app.get('port'))
