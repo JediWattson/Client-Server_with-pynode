@@ -12,6 +12,6 @@ var app = require('express')()
 	console.log("connect!")
 })
 
-.set('port', 443)
+.set('port', 80)
 
 require('https').createServer(options, app).listen(app.get('port'))
