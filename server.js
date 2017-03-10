@@ -7,21 +7,6 @@ var options = {
     cert: fs.readFileSync('/etc/letsencrypt/live/famtrees.ml/fullchain.pem'), 
 }
 
-require("net")
-.createServer()
-.listen(1337)
-.on('connection', (c) => {
-	c.write("enter Name: ")
-	c.pipe(c)
-	userList.push(new u(true, c, ""))
-	
-	c.on('data', (data) => {uChoice(userList, data, c)})
-	c.on('close', () => {c.unref()})
-})
-
-.on('close', () => {console.log("done")})
-.on('error', (err) => {throw err})
-
 var app = require('express')()
 .set('port', 80)
 .get('/', (req, res) =>{
