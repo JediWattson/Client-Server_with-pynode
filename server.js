@@ -27,7 +27,7 @@ require("net")
 var app = require('express')()
 .get('/', (req, res) =>{
 	res.sendFile(path.join(__dirname + '/index.html'))
-	console.log("connect!")
+	console.log(req.header('x-forwarded-for') || req.connection.remoteAddress + "connect!")
 })
 
 .listen(80)
